@@ -5,7 +5,24 @@
  * '1 и 6.45, -2, но 8, а затем 15, то есть 2.7 и -1028' => { min: -1028, max: 15 }
  */
 function getMinMax(string) {
+  function isNumeric(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+  }
+  const n = string.length;
+  let i = 0, extr = { min: Infinity, max: -Infinity };
 
+  while (i < n) {
+    let k = i + 1;
+    if (isNumeric(string[i])) {
+      while (isNumeric(string[k]) || (string[k] === '.')) k++;
+      let t = +(string.substr(i, k - i));
+      if (string[i - 1] === '-') t *= (-1);
+      if (extr.min > t) extr.min = t;
+      if (extr.max < t) extr.max = t;
+    }
+    i = k;
+  }
+  return extr;
 }
 
 /* ============================================= */
@@ -16,7 +33,8 @@ function getMinMax(string) {
  * @return {number} число под номером х
  */
 function fibonacciSimple(x) {
-  return x;
+  if (x === 1 || x === 2) return 1;
+  return fibonacciSimple(x - 1) + fibonacciSimple(x - 2);
 }
 
 /* ============================================= */
@@ -28,7 +46,11 @@ function fibonacciSimple(x) {
  * @return {number} число под номером х
  */
 function fibonacciWithCache(x) {
-  return x;
+  let cache = {}, res;
+
+  cache[1] = 1; cache[2] = 1;
+  if (!(x in cache)) cache[x] = fibonacciSimple(x);
+  return cache[x];
 }
 
 /* ============================================= */
@@ -49,7 +71,23 @@ function fibonacciWithCache(x) {
  * @return {string}
  */
 function printNumbers(max, cols) {
-
+  let r = Math.trunc((max + 1) / cols), i, ans = '', next;
+  if (((max + 1) % cols) !== 0) ++r;
+  for (i = 0; i < r; ++i)
+  {
+    next = i;
+    // if (next < 10) ans += ' ';
+    // ans += i;
+    while (next <= max) {
+      if (next < 10) ans += ' ';
+      ans += next;
+      if (next + r <= max) ans += ' ';
+      next += r;
+    }
+    if (i !== r - 1) ans += '\n';
+  }
+  // ans += '\b';
+  return ans;
 }
 
 /* ============================================= */
@@ -60,7 +98,18 @@ function printNumbers(max, cols) {
  * @return {string}
  */
 function rle(input) {
+  const n = input.length;
+  let k = 0, i = 0, ans = '' ;
 
+  while (i < n){
+    ans += input[i]; k = 1;
+    while (input[i + 1] === input[i]) {
+      ++k; ++i;
+    }
+    if (k !== 1) ans += k;
+    ++i;
+  }
+  return ans;
 }
 
 module.exports = {
