@@ -6,25 +6,25 @@
  * '1 и 6.45, -2, но 8, а затем 15, то есть 2.7 и -1028' => { min: -1028, max: 15 }
  */
 function getMinMax(string) {
-  let l = 0,
-    r,
+  let i = 0,
+    k,
     num,
     extr = { min: Infinity, max: -Infinity };
 
-  while (l < string.length) {
-    r = l + 1;
-    if (!isNaN(parseFloat(string[l]))) { // && isFinite(string[i])
-      while ((!isNaN(parseFloat(string[r]))) || (string[r] === '.')) { // && isFinite(string[k])
-        r += 1;
+  while (i < string.length) {
+    k = i + 1;
+    if (!isNaN(parseFloat(string[i]))) { // && isFinite(string[i])
+      while ((!isNaN(parseFloat(string[k]))) || (string[k] === '.')) { // && isFinite(string[k])
+        k += 1;
       }
-      num = +(string.substr(l, r - l));
-      if (string[l - 1] === '-') {
+      num = +(string.substr(i, k - i));
+      if (string[i - 1] === '-') {
         num *= (-1);
       }
-      extr.max = Math.max(num, +extr.max);
-      extr.min = Math.min(num, +extr.min);
+      extr.max = Math.max(num, extr.max);
+      extr.min = Math.min(num, extr.min);
     }
-    l = r;
+    i = k;
   }
   return extr;
 }
@@ -51,26 +51,22 @@ function fibonacciSimple(x) {
  * @param {number} x номер числа
  * @return {number} число под номером х
  */
-function fibonacciWithCache(n) {
-  const mn = () => {
-    const cache = {};
+const fibonacciWithCache = (function() {
+  const cache = {};
 
-    return function f(x) {
-      if (x === 0 || x === 1) {
-        return x;
-      }
-      if (x in cache) {
-        return cache[x];
-      }
-      cache[x] = f(x - 1) + f(x - 2);
+  function f(x) {
+    if (x === 0 || x === 1) {
+      return x;
+    }
+    if (x in cache) {
       return cache[x];
-    };
-  };
-  const ans = mn();
+    }
+    cache[x] = f(x - 1) + f(x - 2);
+    return cache[x];
+  }
 
-  return ans(n);
-}
-
+  return f;
+}());
 
 /* ============================================= */
 
@@ -130,7 +126,8 @@ function rle(input) {
   while (i < n) {
     ans += input[i]; count = 1;
     while (input[i + 1] === input[i]) {
-      count += 1; i += 1;
+      count += 1;
+      i += 1;
     }
     if (count !== 1) {
       ans += count;
