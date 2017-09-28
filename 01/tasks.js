@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style,no-trailing-spaces */
 /**
  * найдите минимум и максимум в любой строке
  * @param  {string} string входная строка(числа отделены от других частей строки пробелами или знаками препинания)
@@ -5,7 +6,27 @@
  * '1 и 6.45, -2, но 8, а затем 15, то есть 2.7 и -1028' => { min: -1028, max: 15 }
  */
 function getMinMax(string) {
+  let i = 0,
+    k,
+    num,
+    extr = { min: Infinity, max: -Infinity };
 
+  while (i < string.length) {
+    k = i + 1;
+    if (!isNaN(parseFloat(string[i]))) { // && isFinite(string[i])
+      while ((!isNaN(parseFloat(string[k]))) || (string[k] === '.')) { // && isFinite(string[k])
+        k += 1;
+      }
+      num = +(string.substr(i, k - i));
+      if (string[i - 1] === '-') {
+        num *= (-1);
+      }
+      extr.max = Math.max(num, extr.max);
+      extr.min = Math.min(num, extr.min);
+    }
+    i = k;
+  }
+  return extr;
 }
 
 /* ============================================= */
@@ -16,7 +37,10 @@ function getMinMax(string) {
  * @return {number} число под номером х
  */
 function fibonacciSimple(x) {
-  return x;
+  if (x === 0 || x === 1) {
+    return x;
+  }
+  return fibonacciSimple(x - 1) + fibonacciSimple(x - 2);
 }
 
 /* ============================================= */
@@ -27,9 +51,22 @@ function fibonacciSimple(x) {
  * @param {number} x номер числа
  * @return {number} число под номером х
  */
-function fibonacciWithCache(x) {
-  return x;
-}
+const fibonacciWithCache = (function() {
+  const cache = {};
+
+  function f(x) {
+    if (x === 0 || x === 1) {
+      return x;
+    }
+    if (x in cache) {
+      return cache[x];
+    }
+    cache[x] = f(x - 1) + f(x - 2);
+    return cache[x];
+  }
+
+  return f;
+}());
 
 /* ============================================= */
 
@@ -49,7 +86,28 @@ function fibonacciWithCache(x) {
  * @return {string}
  */
 function printNumbers(max, cols) {
+  let rows = Math.trunc((max + 1) / cols), i, ans = '', next;
 
+  if (((max + 1) % cols) !== 0) {
+    rows += 1;
+  }
+  for (i = 0; i < rows; ++i) {
+    next = i;
+    while (next <= max) {
+      if (next < 10) {
+        ans += ' ';
+      }
+      ans += next;
+      if (next + rows <= max) {
+        ans += ' ';
+      }
+      next += rows;
+    }
+    if (i !== rows - 1) {
+      ans += '\n';
+    }
+  }
+  return ans;
 }
 
 /* ============================================= */
@@ -60,7 +118,23 @@ function printNumbers(max, cols) {
  * @return {string}
  */
 function rle(input) {
+  const n = input.length;
+  let count = 0,
+    i = 0,
+    ans = '';
 
+  while (i < n) {
+    ans += input[i]; count = 1;
+    while (input[i + 1] === input[i]) {
+      count += 1;
+      i += 1;
+    }
+    if (count !== 1) {
+      ans += count;
+    }
+    i += 1;
+  }
+  return ans;
 }
 
 module.exports = {
