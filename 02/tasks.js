@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style,indent,eol-last,semi */
 /**
  * Исправьте проблему с таймером: должны выводиться числа от 0 до 9.
  * Доп. задание: предложите несколько вариантов решения.
@@ -20,9 +21,15 @@ function timer(logger = console.log) {
  * @return {Function} функция с нужным контекстом
  */
 function customBind(func, context, ...args) {
-  console.log(context);
-  return func.bind(context, ...args);
+    const OutArray = args;
+
+    return function(...args) { // (*)
+      const InnerArray = args;
+
+      return func.apply(context, OutArray.concat(InnerArray));
+    };
 }
+
 
 /*= ============================================ */
 
@@ -34,9 +41,20 @@ function customBind(func, context, ...args) {
  * sum :: void -> Number
  */
 function sum(x) {
+  let Cursum = x;
+
+  function add(y) {
+    if (y) {
+      Cursum += y;
+      return add;
+    }
+    return Cursum;
+  }
+  if (x !== undefined) {
+    return add;
+  }
   return 0;
 }
-
 /*= ============================================ */
 
 /**
@@ -46,6 +64,28 @@ function sum(x) {
  * @return {boolean}
  */
 function anagram(first, second) {
+  let i;
+  const FirstSet = {},
+    SecondSet = {};
+
+  for (i = 0; i < first.length; ++i) {
+    (FirstSet[first[i]] === undefined) ? FirstSet[first[i]] = 0 : FirstSet[first[i]]++;
+  }
+
+  for (i = 0; i < second.length; ++i) {
+    (SecondSet[second[i]] === undefined) ? SecondSet[second[i]] = 0 : SecondSet[second[i]]++;
+  }
+  if (first.length !== second.length) {
+    return false;
+  }
+  let flag = true;
+
+  for (i in FirstSet) {
+    (FirstSet[i] === SecondSet[i]) ? flag *= true : flag *= false;
+  }
+  if (flag) {
+    return true;
+  }
   return false;
 }
 
@@ -58,7 +98,20 @@ function anagram(first, second) {
  * @return {Array<number>} массив уникальных значений, отсортированный по возрастанию
  */
 function getUnique(arr) {
-  return [];
+  const cache = {},
+    ans = arr.filter(number => {
+      if (cache[number] === undefined) {
+        cache[number] = 1;
+        return number;
+      }
+      return false;
+    });
+
+  function compareNumeric(a, b) {
+    return a - b;
+  }
+  ans.sort(compareNumeric);
+  return ans;
 }
 
 /**
@@ -68,7 +121,17 @@ function getUnique(arr) {
  * @return {Array<number>} массив уникальных значений, отсортированный по возрастанию
  */
 function getIntersection(first, second) {
-  return [];
+  function compareNumeric(a, b) {
+    return a - b;
+  }
+  const ans = first.filter(number => {
+    return second.some(n => {
+      return n === number;
+    });
+  });
+
+  ans.sort(compareNumeric);
+  return ans;
 }
 
 /* ============================================= */
@@ -87,7 +150,21 @@ function getIntersection(first, second) {
  * @return {boolean}
  */
 function isIsomorphic(left, right) {
+  if (left === right) {
+    return true;
+  }
+  if (left.length !== right.length) {
+    return false;
+  }
+  let count = 0;
 
+  for (let i = 0; i < left.length; ++i) {
+    if (left[i] !== right[i]) {
+      ++count;
+    }
+  }
+
+  return count === 1;
 }
 
 module.exports = {
@@ -98,4 +175,5 @@ module.exports = {
   getUnique,
   getIntersection,
   isIsomorphic
+// eslint-disable-next-line eol-last,semi
 };

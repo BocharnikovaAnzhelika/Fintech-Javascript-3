@@ -68,21 +68,21 @@ describe('Lesson 2', () => {
 
   describe('getUnique', () => {
     it('should get uniq values from the array', () => {
-      expect(getUnique([1, 2, 4, 2, 3, 1])).to.eql([1, 2, 4, 3]);
+      expect(getUnique([1, 14, 2, 2, 3, 1])).to.eql([1, 2, 3, 14]);
       expect(getUnique([1, 1, 1, 1])).to.eql([1]);
     });
   });
 
   describe('getIntersection', () => {
     it('should return sorted intersection of arrays', () => {
-      expect(getIntersection([1, 5, 7, 9, 3,], [1, 2, 3, 4])).to.eql([1, 3]);
+      expect(getIntersection([1, 5, 7, 9, 3], [1, 2, 3, 4])).to.eql([1, 3]);
       expect(getIntersection([1, 9, 10, 3, 5, 7], [10, 3, 4])).to.eql([3, 10]);
     });
   });
 
   describe('isIsomorphic', () => {
     it('should check if only one char is different', () => {
-      expect(isIsomorphic('help', 'hell')).to.be.ok();
+        expect(isIsomorphic('help', 'hell')).to.be.ok();
       expect(isIsomorphic('hold', 'hell')).not.to.be.ok();
       expect(isIsomorphic('help', 'hell yeah')).not.to.be.ok();
     });
