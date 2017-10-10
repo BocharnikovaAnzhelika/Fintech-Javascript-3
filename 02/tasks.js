@@ -3,7 +3,11 @@
  * Доп. задание: предложите несколько вариантов решения.
  */
 function timer(logger = console.log) {
+<<<<<<< HEAD
   for (let i = 0; i < 10; i++) {
+=======
+  for (var i = 0; i < 10; i++) {
+>>>>>>> 50012d287299ebff60edfc3aec31964de4f478e9
     setTimeout(() => {
       logger(i);
     }, 100);
@@ -20,8 +24,12 @@ function timer(logger = console.log) {
  * @return {Function} функция с нужным контекстом
  */
 function customBind(func, context, ...args) {
+<<<<<<< HEAD
   console.log(context);
   return func.bind(context, ...args);
+=======
+
+>>>>>>> 50012d287299ebff60edfc3aec31964de4f478e9
 }
 
 /*= ============================================ */
