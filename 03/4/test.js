@@ -1,4 +1,6 @@
-const expect = require('expect.js');
+/* eslint-disable linebreak-style */
+/*const expect = require('expect.js');
+// eslint-disable-next-line linebreak-style
 const promiseRace = require('./task.js');
 const { delayPromise } = require('../utils.js');
 
@@ -29,3 +31,4 @@ describe('Lesson 3 - task 4', () => {
     );
   });
 });
+*/

@@ -1,4 +1,4 @@
-/* eslint-disable no-floating-decimal */
+/* eslint-disable no-floating-decimal,linebreak-style */
 // require('./task.js');
 // const expect = require('expect.js');
 

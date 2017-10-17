@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style,no-trailing-spaces */
 /**
  * Создайте класс, обладающий следующим поведением:
  * const values = ['hello', 'javascript', 'world'];
@@ -8,9 +9,17 @@
  * @class NumberAndString
  * @param {String} str - initial value
  */
+// eslint-disable-next-line linebreak-style
 class NumberAndString {
   constructor(str) {
-
+    this.str = str;
+    this.len = str.length;
+  }
+  valueOf() {
+    return this.len;
+  }
+  toString() {
+    return this.str;
   }
 }
 

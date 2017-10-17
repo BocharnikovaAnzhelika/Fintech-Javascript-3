@@ -1,4 +1,6 @@
+/* eslint-disable linebreak-style */
 const expect = require('expect.js');
+// eslint-disable-next-line linebreak-style
 const NumberAndString = require('./task.js');
 
 describe('Lesson 3 - task 1', () => {
