@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 const fs = require('fs');
 const validator = require('html-validator');
 
