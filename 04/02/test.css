@@ -1,0 +1,52 @@
+.first_table {
+    width: 750px;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.first_table th {
+    background-color: #afd792; /* Цвет фона */
+    border-bottom-style: solid;
+}
+
+.first_table tr:nth-child(odd) {
+    background-color: brown;
+}
+
+.first_table tr:nth-child(2) {
+    background-color: cadetblue;
+}
+
+.first_table td:nth-child(2) {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.first_table td {
+    width: 20%;
+}
+
+.first_table tr:hover {
+    background-color: #f3bd48;
+}
+
+.second_table {
+    border-spacing: 8px;
+}
+
+.second_table td {
+    padding: 8px;
+}
+
+.second_table td:nth-child(1) { background-color: #30c792; }
+
+.second_table td:nth-child(2) { background-color: #7cebc4; }
+
+.second_table td:nth-child(3) { background-color: #7febeb; }
+
+.second_table td:nth-child(4) { background-color: #7fc7eb; }
+
+.second_table td:nth-child(5) { background-color: #46aadb; }
+
+.second_table td:nth-child(6) { background-color: #2d83ad; }
