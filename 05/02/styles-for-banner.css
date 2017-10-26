@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400');
 .banner {
   width: 1080px;
   height: 413px;
@@ -11,13 +12,14 @@
   overflow: hidden;
 }
 
-.layer-1 img {
+.layer-1 div {
+  padding-left: 14px;
 }
 
 .text-1 {
   width: 342px;
   height: 100px;
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
   font-size: 50px;
   font-weight: 100;
   line-height: 1;
