@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400');
+.banner {
+  width: 1080px;
+  height: 413px;
+  background-image: linear-gradient(to right, #1489e7, #003e82);
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  //line-height: 413px;
+  overflow: hidden;
+}
+
+.layer-1 div {
+  padding-left: 14px;
+}
+
+.text-1 {
+  width: 342px;
+  height: 100px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 50px;
+  font-weight: 100;
+  line-height: 1;
+  color: #ffffff;
+}
+
+.text-2 {
+  width: 326px;
+  height: 48px;
+  font-family: Roboto;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #ffffff;
+}
+
+.issue {
+  width: 212px;
+  height: 62px;
+  border-radius: 6px;
+  background-color: #ffdd2d;
+  border-color: #ffdd2d;
+}
+
+.issue-text {
+  width: 212px;
+  height: 24px;
+  font-family: Roboto;
+  font-size: 17px;
+  line-height: 1.41;
+  text-align: center;
+  color: #333333;
+}
