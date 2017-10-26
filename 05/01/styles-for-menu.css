@@ -22,13 +22,14 @@
   font-family: Roboto;
   font-size: 13px;
   letter-spacing: 0.9px;
-  color: #ffffff;
+  color: #fff;
+  text-transform: uppercase;
 }
 
 .box {
   height: 62px;
   border-bottom-style: solid;
-  border-bottom-radius: 3px;
+  border-bottom-width: 3px;
   border-bottom-color: #3e4757;
   line-height: 62px;
 }
